@@ -10,16 +10,17 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
   config.vm.box_check_update = false
   config.ssh.insert_key = false
-
 # config.vm.synced_folder "../.", "/vagrant_data"
+
 # Provision docker Node
     
     config.vm.define "docker" do |docker|
       docker.vm.hostname = "docker.clevory.local"
-      docker.vm.network :private_network, ip: "192.168.5.200", :mode => 'bridge'
-    	docker.vm.provision "shell", path: "docker.sh"
+      docker.vm.provision "shell", path: "docker.sh"
+      docker.vm.network "private_network", ip: "192.168.1.200"
       docker.vm.provider "virtualbox" do |vb|
-        vb.memory = 4096
+        vb.memory = "4096"
+        vb.name = "docker"
       end
-  	end
+    end
 end
