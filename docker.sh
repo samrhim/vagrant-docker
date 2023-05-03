@@ -10,11 +10,11 @@ systemctl restart sshd
 PASS=$(echo "docker" | openssl passwd -1 -stdin)
 useradd -p  "$PASS" -s /bin/bash -d /home/docker docker 
 cat <<EOF >> /etc/sudoers.d/docker
-docker	ALL=NOPASSWD: ALL
+docker	ALL=ALL   NOPASSWD: ALL
 EOF
 
 cat <<EOF >> /etc/hosts
-192.168.5.200 docker.clevory.local
+192.168.1.200 docker.clevory.local
 EOF
 
 curl -fsSL https://get.docker.com -o get-docker.sh
