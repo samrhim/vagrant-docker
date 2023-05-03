@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
   config.vm.box_check_update = false
   config.ssh.insert_key = false
-# config.vm.synced_folder "../.", "/vagrant_data"
+  config.vm.synced_folder "./data", "/vagrant_data"
 
 # Provision docker Node
     
