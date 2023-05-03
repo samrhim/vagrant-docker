@@ -9,8 +9,8 @@ sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_
 systemctl restart sshd
 
 PASS=$(echo "docker" | openssl passwd -1 -stdin)
-sudo useradd -p  "$PASS" -s /bin/bash -d /home/docker -m  docker 
-echo "docker  ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/docker"
+sudo useradd -p  "$PASS" -s /bin/bash -d /home/student -m  student
+echo "student  ALL=(ALL:ALL) NOPASSWD: ALL"  >> /etc/sudoers.d/student
 
 cat <<EOF > /etc/hosts
 192.168.1.200 docker.clevory.local
@@ -19,9 +19,9 @@ EOF
 # Install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
+sudo usermod -aG docker student
 
 # Install docker-compose
-
 curl -SL https://github.com/docker/compose/releases/download/v2.17.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 sudo chmod +x /usr/bin/docker-compose
