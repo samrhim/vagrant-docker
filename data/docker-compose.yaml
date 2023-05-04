@@ -4,6 +4,10 @@ services:
     build: .
     ports:
       - "8000:5000"
+    volumes:
+      - .:/code
+    environment:
+      - FLASK_DEBUG="true" # This mode should only be used in developement environment 
     depends_on:
       - redis
   redis:
