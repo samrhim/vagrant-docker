@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/code
     environment:
-      - FLASK_DEBUG="true" # This mode should only be used in developement environment 
+      - "FLASK_DEBUG:true" # This mode should only be used in developement environment 
     depends_on:
       - redis
   redis:
